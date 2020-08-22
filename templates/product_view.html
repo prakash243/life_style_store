@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} Product details{% endblock %}
+
+
+{% block body %}
+    {% for i in product_view %}
+    <hr>
+    <div class="row" >
+        <div class="col-md-4">
+            <p> <img src="/media/{{i.product_image}}" alt="{{i.product_name}} image" width="400px" height="400px" style="margin-left: 12px;"> </p>
+
+        </div>
+
+
+        <div class="col-md-8">
+            <h2> {{i.product_name}} </h2>
+            <hr>
+            <p>{{i.description}} </p>
+            <br><br><br>
+            <p style="color: #cf6011">Category : {{i.category}} </p>
+            <p style="font-weight: bolder; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">MRP : Rs. {{i.price}} </p>
+            
+            <button class="btn btn-success addtocart" id="pr{{i.pk}}" >Add to Cart</button>
+            <button class="btn btn-success" id="bn{{i.pk}}" style="margin-left:30px;">Buy Now</button>
+            
+       
+    </div>
+    </div>
+   
+        {% endfor %}
+        {% endblock %}
+
+
+
+
+
+
+<!-- 
+        {% block js %} 
+        <script>
+          
+          if (localStorage.getItem('cart') == null){
+                  var cart = {}
+            } 
+          else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            document.getElementById('cart').innerHTML = Object.keys(cart).length;
+            }   
+      
+        
+              $('.addtocart').click(function(){
+      
+                  var id = this.id;
+                  var idstr = this.id.toString();
+                  console.log(id);
+      
+                  if (cart[idstr]!= undefined){
+                      cart[idstr]+=1;
+                  }
+                  else{
+                      cart[idstr] = 1;
+                      
+                  }
+                  localStorage.setItem('cart', JSON.stringify(cart))
+                  document.getElementById('cart').innerHTML = Object.keys(cart).length;
+                  console.log(cart);
+                  
+              });
+          
+      </script>{% endblock %}
+         -->
